@@ -23,4 +23,7 @@ docker-compose up --build
 - Debug Routes: ``docker-compose exec php bin/console debug:router``
 - Create new entity: ``docker-compose exec php bin/console make:entity --api-resource``
 - Update database schema: ``docker-compose exec php bin/console doctrine:schema:update --force``
-- Update database schema with delete: ``docker-compose exec php bin/console doctrine:schema:update --complete --force`` 
+- Update database schema with delete: ``docker-compose exec php bin/console doctrine:schema:update --complete --force``
+
+## Mac users - Database does not start
+- go to `/api/bin` and run ``chmod 755 console``
