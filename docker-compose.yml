@@ -38,6 +38,8 @@ services:
       - php
     volumes:
       - ./api/public:/srv/api/public:ro
+    ports:
+      - "8080:80"
 
   vulcain:
     image: dunglas/vulcain
