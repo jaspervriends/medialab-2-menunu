@@ -20,7 +20,7 @@ services:
       start_period: 30s
     depends_on:
       - db
-      # - dev-tls
+      - dev-tls
     volumes:
       - ./api:/srv/api:rw,cached
       - ./api/docker/php/conf.d/api-platform.dev.ini:/usr/local/etc/php/conf.d/api-platform.ini
@@ -49,7 +49,7 @@ services:
       - UPSTREAM=http://api
     depends_on:
       - api
-      # - dev-tls
+      - dev-tls
     volumes:
       - dev-certs:/certs:ro,nocopy
     ports:
@@ -82,8 +82,8 @@ services:
       - JWT_KEY=!ChangeMe!
       - KEY_FILE=/certs/localhost.key
       - PUBLISH_ALLOWED_ORIGINS=https://localhost:1337 # required for publishing from the demo page
-    # depends_on:
-    #   - dev-tls
+    depends_on:
+      - dev-tls
     volumes:
       - dev-certs:/certs:ro,nocopy
     ports:
@@ -91,15 +91,15 @@ services:
         published: 1337
         protocol: tcp
 
-  # dev-tls:
-  #   build:
-  #     context: ./docker/dev-tls
-  #   volumes:
-  #     - dev-certs:/certs:rw
-  #   ports:
-  #     - target: 80
-  #       published: 80
-  #       protocol: tcp
+  dev-tls:
+    build:
+      context: ./docker/dev-tls
+    volumes:
+      - dev-certs:/certs:rw
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
 
 volumes:
   db-data: {}
