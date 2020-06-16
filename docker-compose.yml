@@ -98,7 +98,7 @@ services:
       - dev-certs:/certs:rw
     ports:
       - target: 80
-        published: 80
+        published: 8181
         protocol: tcp
 
 volumes:
