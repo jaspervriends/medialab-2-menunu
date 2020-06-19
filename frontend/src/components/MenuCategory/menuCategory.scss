@@ -1,0 +1,36 @@
+.menu-category {
+    &__title {
+        cursor: pointer;
+    }
+
+    &-item {
+        display: flex;
+        padding: 5px 0;
+        border-bottom: 0.25px solid #C4C4C4;
+
+        &__title {
+            flex-basis: 90%;
+        }
+
+        &__prices {
+            flex-basis: 10%;
+        }
+    }
+
+    &__header {
+        position: relative;
+    }
+
+    .fa-chevron-up {
+        position: absolute;
+        right: 10px;
+        top: calc(50% - 7px);
+        cursor: pointer;
+    }
+
+    .opened {
+        .fa-chevron-up {
+            transform: rotate(90deg) scaleX(-1);
+        }
+    }
+}
