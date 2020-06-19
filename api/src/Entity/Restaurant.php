@@ -86,9 +86,15 @@ class Restaurant
      */
     private $logo;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=RestaurantTags::class, inversedBy="restaurants")
+     */
+    private $tags;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -267,6 +273,32 @@ class Restaurant
     public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RestaurantTags[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(RestaurantTags $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(RestaurantTags $tag): self
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+        }
 
         return $this;
     }
