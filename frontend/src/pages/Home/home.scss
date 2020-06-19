@@ -1,5 +1,11 @@
 .container {
   padding: 20px;
-  text-align: center;
   background-color: #E5E5E5;
+}
+
+.filter {
+  &__title {
+    display: block;
+    margin-bottom: 10px;
+  }
 }
