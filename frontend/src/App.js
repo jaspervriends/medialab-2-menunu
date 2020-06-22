@@ -5,6 +5,7 @@ import "./app.scss";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav"
+import Restaurant from "./pages/Restaurant/Restaurant";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -17,6 +18,7 @@ function App() {
         } 
       <Switch>
         <Route path={"/home"} component={Home} exact />
+        <Route path={"/restaurant"} component={Restaurant} />
         <Route path={"*"} component={PageNotFound} />
       </Switch>
     </BrowserRouter>

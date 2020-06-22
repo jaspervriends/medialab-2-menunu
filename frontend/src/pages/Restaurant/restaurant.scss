@@ -1,0 +1,12 @@
+.restaurant {
+    &__header {
+        height: 50px;
+    }
+
+    &__menu {
+        margin-top: 20px;
+        background-color: white;
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+        padding: 10px;
+    }
+}
