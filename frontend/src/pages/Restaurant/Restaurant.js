@@ -18,8 +18,6 @@ export default function Restaurant({props, match, ...rest}) {
       .then(({data}) => {
         setIsLoading(false);
         setCurrentRestaurant(data.data)
-
-        console.log(data)
     })
   }
 
@@ -30,7 +28,8 @@ export default function Restaurant({props, match, ...rest}) {
   return (
     <div className={"container"}>
       <div className={"restaurant"}>
-        <div className={"restaurant__header"}></div>
+        <div className={"restaurant__header"}>
+        </div>
         <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage}/>
       </div>
 

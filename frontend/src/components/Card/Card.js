@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./card.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -24,14 +24,14 @@ export function Card({id, title, description, priceRange = 0}) {
             <p className={"card__priceRange card__priceRange--" + priceRange}>
               {euroSigns}
             </p>
-            <div className={"card__actions"}>
+            {/* <div className={"card__actions"}>
               <span className={"card__actions-item"}>
                 <FontAwesomeIcon icon={["fas", "star"]} />
               </span>
               <span className={"card__actions-item"}>
                 <FontAwesomeIcon icon={["fas", "map-marker"]} />
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </a>

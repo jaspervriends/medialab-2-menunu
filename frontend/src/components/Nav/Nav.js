@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./nav.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {matchPath ,useHistory } from "react-router-dom";
+import {useHistory } from "react-router-dom";
 import clsx from "clsx";
 
 export default function Nav({onChange, opened}) {
