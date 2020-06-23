@@ -2,27 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./tabmenu.scss";
 import clsx from "clsx";
 
-function Tabmenu({onChange, value}) {
+function Tabmenu({onChange, value, menuItems}) {
     const [currentSelected, setCurrentSelected] = useState(null);
 
     useEffect(() => {
         setCurrentSelected(value)
     }, [value])
-
-    const menuItems = [
-        {
-            title: "Info",
-            value: "info"
-        },
-        {
-            title: "Menu",
-            value: "menu"
-        },
-        {
-            title: "Beheer",
-            value: "beheer"
-        }
-    ];
 
     return (
         <div className={"tabmenu"}>
