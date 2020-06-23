@@ -18,7 +18,7 @@ function App() {
         } 
       <Switch>
         <Route path={"/home"} component={Home} exact />
-        <Route path={"/restaurant"} component={Restaurant} />
+        <Route path={"/restaurant/:id"} component={Restaurant} />
         <Route path={"*"} component={PageNotFound} />
       </Switch>
     </BrowserRouter>
