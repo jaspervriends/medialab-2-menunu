@@ -95,6 +95,7 @@ class Restaurant
     {
         $this->menus = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->created_at = new \DateTime();
     }
 
     public function getId(): ?int
