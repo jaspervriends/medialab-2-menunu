@@ -15,7 +15,7 @@ export default function Home() {
     setIsLoaded(true);
     setIsLoading(true);
 
-    api(`restaurants?order[priceRange]=${pricing ? 'DESC' : 'ASC'}`)
+    api(`restaurants?${pricing !== null ? `order[priceRange]=${pricing ? 'DESC' : 'ASC'}` : ''}`)
     .then(({data}) => {
       setIsLoading(false);
       setRestaurants(data.data)
@@ -29,8 +29,14 @@ export default function Home() {
         <div className={"filter__items"}>
           <Button label="afstand" />
           <Button label="favoriete" />
-          <Button label="prijs" onClick={() => {
-            setPricing(!pricing)
+          <Button label={`prijs ${pricing !== null ? pricing ? 'Oplopend' : 'Aflopend' : ''}`} onClick={() => {
+            if(pricing === null) {
+              setPricing(true);
+            }else if(pricing) {
+              setPricing(false)
+            }else{
+              setPricing(null);
+            }
             setIsLoaded(false)
           }} />
           <Button label="menu beschikbaar" />
