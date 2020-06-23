@@ -5,7 +5,6 @@ import Card from "../../components/Card/Card";
 import api from "../../utils/api"
 
 export default function Home() {
-  const [exampleState, setExampleState] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,18 +18,17 @@ export default function Home() {
     .then(({data}) => {
       setIsLoading(false);
       setRestaurants(data.data)
-      console.log(data)
     })
   }
   
   return (
     <div className={"container"}>
       <div className={"filter"}>
-        <span className={"filter__title"}>Filter op</span>
+        <h2 className={"filter__title"}>Filter op</h2>
         <div className={"filter__items"}>
           {/* <Button label="afstand" />
           <Button label="favoriete" /> */}
-          <Button label={`prijs ${pricing !== null ? (pricing ? '- oplopend' : '- aflopend') : ''}`} onClick={() => {
+          <Button ariaLabel="Filter op prijs" label={`prijs ${pricing !== null ? (pricing ? '- oplopend' : '- aflopend') : ''}`} onClick={() => {
             if(pricing === null) {
               setPricing(true);
             } else if(pricing) {

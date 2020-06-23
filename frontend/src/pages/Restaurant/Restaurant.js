@@ -32,8 +32,6 @@ export default function Restaurant({props, match, ...rest}) {
       .then(({data}) => {
         setIsLoading(false);
         setCurrentRestaurant(data.data)
-
-        console.log(data)
     })
   }
 
