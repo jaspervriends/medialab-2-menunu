@@ -7,6 +7,7 @@ export default function api(endpoint, body, customData = {}, headers = {}) {
     data: body,
     headers: {
       'Accept': 'application/vnd.api+json',
+      'Content-Type': 'application/vnd.api+json',
       ...headers,
     },
     ...customData,
