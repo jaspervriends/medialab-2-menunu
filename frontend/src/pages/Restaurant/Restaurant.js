@@ -9,17 +9,21 @@ export default function Restaurant({props, match, ...rest}) {
   const menuItems = [
     {
         title: "Info",
-        value: "info"
+        value: "info",
+        ariaLabel: "Restaurant Informatie",
     },
     {
         title: "Menu",
-        value: "menu"
+        value: "menu",
+        ariaLabel: "Menu inzien"
     },
     {
-        title: "Beheer",
-        value: "beheer"
+        title: "Menu aanpassen",
+        value: "Menu aanpassen",
+        ariaLabel: "Menu aanpassen",
     }
 ];
+
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentRestaurant, setCurrentRestaurant] = useState(null);

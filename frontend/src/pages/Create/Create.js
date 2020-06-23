@@ -26,11 +26,14 @@ export default function Create() {
   const menuItems = [
     {
         title: "Info",
-        value: "info"
+        value: "info",
+        ariaLabel: "Restaurant Informatie",
     },
     {
         title: "Menu",
-        value: "menu"
+        value: "menu",
+        ariaLabel: "Menu aanmaken",
+        disabled: true
     },
 ];
 
