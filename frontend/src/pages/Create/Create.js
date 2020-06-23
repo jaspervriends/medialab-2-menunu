@@ -7,7 +7,7 @@ import { faSave } from "@fortawesome/free-solid-svg-icons";
 import api from "../../utils/api";
 
 export default function Create() {
-  const [currentPage, setCurrentPage] = useState("menu");
+  const [currentPage, setCurrentPage] = useState("info");
   const [createForm, setCreateForm] = useState({
     name: '',
     description: '',
@@ -23,7 +23,7 @@ export default function Create() {
     // tags: []
 
   });
-  const menuItems = [
+  const [menuItems, setMenuItems] = useState([
     {
         title: "Info",
         value: "info",
@@ -35,7 +35,7 @@ export default function Create() {
         ariaLabel: "Menu aanmaken",
         disabled: true
     },
-];
+]);
 
 const [menus, setMenus] = useState([
   { 
@@ -66,13 +66,19 @@ function menuUpdate(val, menu) {
 }
 
 async function create (){
-  console.log(createForm)
   await api(`restaurants`, {data: {attributes:createForm,}} )
-  .then(({data}) => {
-    console.log(data)
+  .then(({data}) => {    
+    setMenuItems(
+      [
+        menuItems[0],
+        {
+          ...menuItems[1], 
+        disabled : false
+        }
+      ]
+    )
   })
 }
-
   return (
     <div className={"container"}>
       <div className={"create"}>

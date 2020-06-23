@@ -3,6 +3,7 @@ import "./restaurant.scss";
 import Tabmenu from "../../components/Tabmenu/Tabmenu";
 import MenuCategory from "../../components/MenuCategory/MenuCategory";
 import api from "../../utils/api"
+import RestaurantMenu from "../../components/RestaurantMenu/RestaurantMenu";
 
 export default function Restaurant({props, match, ...rest}) {
   const [currentPage, setCurrentPage] = useState("menu");
@@ -22,7 +23,7 @@ export default function Restaurant({props, match, ...rest}) {
         value: "Menu aanpassen",
         ariaLabel: "Menu aanpassen",
     }
-];
+  ];
 
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,10 +35,9 @@ export default function Restaurant({props, match, ...rest}) {
 
     api(`restaurants/${match.params.id}`)
       .then(({data}) => {
-        setIsLoading(false);
         setCurrentRestaurant(data.data)
 
-        console.log(data)
+        setIsLoading(false);
     })
   }
 
@@ -53,12 +53,22 @@ export default function Restaurant({props, match, ...rest}) {
       </div>
 
       {currentPage === "info" && (
-          <div className={"restaurant__info"}>{currentRestaurant.attributes.description}</div>
+        <div className={"restaurant__info"}>{currentRestaurant.attributes.description}</div>
       )}
+
       {currentPage === "menu" && (
-          <div className={"restaurant__menu"}>
-            <MenuCategory />
-          </div>
+        <div className={"restaurant__menu"}>
+          {currentRestaurant.relationships && !currentRestaurant.relationships.menus && (
+            <p>Dit restaurant heeft nog geen menu.</p>
+          )}
+          
+          {/* Loop through the menus */}
+          {currentRestaurant.relationships && currentRestaurant.relationships.menus.data.map((item, key) => {
+            return (
+              <RestaurantMenu key={key} id={item.id} />
+            );
+          })}
+        </div>
       )}
       {currentPage === "beheer" && (
           <div>beheer</div>
