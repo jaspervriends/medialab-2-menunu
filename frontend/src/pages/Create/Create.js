@@ -3,10 +3,11 @@ import "./create.scss";
 import "../Restaurant/restaurant.scss"
 import Tabmenu from "../../components/Tabmenu/Tabmenu";
 import MenuCategory from "../../components/MenuCategory/MenuCategory";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
 import api from "../../utils/api";
+import { useHistory } from "react-router-dom";
 
 export default function Create() {
+  let history = useHistory();
   const [currentPage, setCurrentPage] = useState("info");
   const [createForm, setCreateForm] = useState({
     name: '',
@@ -67,7 +68,8 @@ function menuUpdate(val, menu) {
 
 async function create (){
   await api(`restaurants`, {data: {attributes:createForm,}} )
-  .then(({data}) => {    
+  .then(({data}) => { 
+   history.push(`/restaurant/${data.data.attributes._id}`);
     setMenuItems(
       [
         menuItems[0],
@@ -83,7 +85,6 @@ async function create (){
     <div className={"container"}>
       <div className={"create"}>
         <div className={"create__header"}>
-        <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage} menuItems={menuItems}/>
         </div>
       {currentPage === "info" && (
         <div className={"create__info"}>
