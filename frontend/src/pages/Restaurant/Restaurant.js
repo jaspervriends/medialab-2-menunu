@@ -5,12 +5,26 @@ import MenuCategory from "../../components/MenuCategory/MenuCategory";
 
 export default function Restaurant() {
   const [currentPage, setCurrentPage] = useState("menu");
+  const menuItems = [
+    {
+        title: "Info",
+        value: "info"
+    },
+    {
+        title: "Menu",
+        value: "menu"
+    },
+    {
+        title: "Beheer",
+        value: "beheer"
+    }
+];
 
   return (
     <div className={"container"}>
       <div className={"restaurant"}>
         <div className={"restaurant__header"}></div>
-        <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage}/>
+        <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage} menuItems={menuItems}/>
       </div>
 
       {currentPage === "info" && (
