@@ -2,6 +2,7 @@
 
 .tabmenu {
     display: flex;
+    align-self: stretch;
 
     &__item {
         flex: 1;

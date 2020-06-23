@@ -10,15 +10,18 @@ export default function Restaurant({props, match, ...rest}) {
   const menuItems = [
     {
         title: "Info",
-        value: "info"
+        value: "info",
+        ariaLabel: "Restaurant Informatie",
     },
     {
         title: "Menu",
-        value: "menu"
+        value: "menu",
+        ariaLabel: "Menu inzien"
     },
     {
-        title: "Beheer",
-        value: "beheer"
+        title: "Menu aanpassen",
+        value: "Menu aanpassen",
+        ariaLabel: "Menu aanpassen",
     }
   ];
 
@@ -55,12 +58,12 @@ export default function Restaurant({props, match, ...rest}) {
 
       {currentPage === "menu" && (
         <div className={"restaurant__menu"}>
-          {!currentRestaurant.relationships.menus && (
+          {currentRestaurant.relationships && !currentRestaurant.relationships.menus && (
             <p>Dit restaurant heeft nog geen menu.</p>
           )}
           
           {/* Loop through the menus */}
-          {currentRestaurant.relationships.menus.data.map((item, key) => {
+          {currentRestaurant.relationships && currentRestaurant.relationships.menus.data.map((item, key) => {
             return (
               <RestaurantMenu key={key} id={item.id} />
             );

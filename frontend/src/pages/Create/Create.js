@@ -26,11 +26,13 @@ export default function Create() {
   const [menuItems, setMenuItems] = useState([
     {
         title: "Info",
-        value: "info"
+        value: "info",
+        ariaLabel: "Restaurant Informatie",
     },
     {
         title: "Menu",
         value: "menu",
+        ariaLabel: "Menu aanmaken",
         disabled: true
     },
 ]);
@@ -64,13 +66,19 @@ function menuUpdate(val, menu) {
 }
 
 async function create (){
-  console.log(createForm)
   await api(`restaurants`, {data: {attributes:createForm,}} )
-  .then(({data}) => {
-    // setMenuItems({...menuItems, {1.disabled : false}})
+  .then(({data}) => {    
+    setMenuItems(
+      [
+        menuItems[0],
+        {
+          ...menuItems[1], 
+        disabled : false
+        }
+      ]
+    )
   })
 }
-
   return (
     <div className={"container"}>
       <div className={"create"}>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./nav.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {useHistory } from "react-router-dom";
+import {useHistory, Link } from "react-router-dom";
 import clsx from "clsx";
 
 export default function Nav({onChange, opened}) {
@@ -24,7 +24,7 @@ export default function Nav({onChange, opened}) {
       ariaLabel: 'Maak een nieuw restaurant aan'
     }
   ]
-    return (
+  return (
       <div className={'nav'}>
         <div className={'nav__button'} onClick={() => onChange(!opened)}>
           <FontAwesomeIcon icon={["fas", "times"]} aria-label="Sluit navigatie" role="button"s/>
@@ -37,11 +37,11 @@ export default function Nav({onChange, opened}) {
           <ul className={'nav__items'}>
             {navItems.map((item, key) => {
               return <li key={key} className={clsx("nav__item", path === item.link && "nav__item--active")}>
-                <a href={item.link}>
-                  <FontAwesomeIcon icon={["fas", item.icon]} aria-label={item.ariaLabel} role="button"/>
+              <Link to={item.link} onClick={() => onChange(!opened)}>
+                  <FontAwesomeIcon icon={["fas", item.icon]} aria-label={item.ariaLabel} role="button" />
                   <div>{item.title}</div>
-                </a>
-                </li>
+                </Link>
+              </li>
             })}
           </ul>
         </div>
