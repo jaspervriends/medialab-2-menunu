@@ -1,0 +1,70 @@
+@import '../../app.scss';
+
+.nav {
+    box-shadow: 12px 0px 30px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 50%;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    height: 100%;
+    background-color: white;
+}
+.nav__button {
+    padding: 20px;
+}
+
+.nav__body {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: calc(100% - 100px);
+}
+
+.nav__account {
+    padding: 60px;
+    text-align: center;
+}
+
+.nav__items {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+.nav__item {
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    a {
+        display: flex;
+        text-decoration: none;
+        color: black;
+    }
+    svg {
+        color: $second-color !important;
+        margin-right: 20px;
+        transform: scale(1.5);
+        width: 20px !important;
+    }
+
+    &--active {
+        color: $primary-color;
+        * {
+            fill: $primary-color;
+        }
+        background: rgba(196, 196, 196, 0.2);
+    }
+}
+
+.nav__footer {
+    padding-left: 20px;
+    color: $primary-color;
+    cursor: pointer;
+    svg {
+        margin-right: 20px;
+        transform: scale(1.5);
+        width: 20px !important;
+    }
+}
