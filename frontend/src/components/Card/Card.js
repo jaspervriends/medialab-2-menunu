@@ -15,6 +15,9 @@ class Card extends Component {
         <p className={"card__description"}>
           "{this.props.description}"
         </p>
+        <p className={"card__priceRange--" + this.props.priceRange}>
+          {this.props.priceRange}
+        </p>
         <div className={"card__actions"}>
           <span className={"card__actions-item"}>
             <FontAwesomeIcon icon={["fas", "star"]} />
