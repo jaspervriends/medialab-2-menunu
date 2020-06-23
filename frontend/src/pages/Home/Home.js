@@ -28,19 +28,19 @@ export default function Home() {
       <div className={"filter"}>
         <span className={"filter__title"}>Filter op</span>
         <div className={"filter__items"}>
-          <Button label="afstand" />
-          <Button label="favoriete" />
+          {/* <Button label="afstand" />
+          <Button label="favoriete" /> */}
           <Button label={`prijs ${pricing !== null ? (pricing ? '- oplopend' : '- aflopend') : ''}`} onClick={() => {
             if(pricing === null) {
               setPricing(true);
-            }else if(pricing) {
+            } else if(pricing) {
               setPricing(false)
-            }else{
+            } else{
               setPricing(null);
             }
             setIsLoaded(false)
           }} />
-          <Button label="menu beschikbaar" />
+          {/* <Button label="menu beschikbaar" /> */}
         </div>
       </div>
       <div className={"overview"}>
@@ -48,7 +48,7 @@ export default function Home() {
         <div>Laden...</div>
       )}
       {restaurants.map((item, key) => {
-        return <Card key={key} title={item.attributes.name} description={item.attributes.description} priceRange={item.attributes.priceRange}/>
+        return <Card key={key} id={item.attributes._id} title={item.attributes.name} description={item.attributes.description} priceRange={item.attributes.priceRange}/>
       })}
       </div>
     </div>

@@ -35,8 +35,7 @@ export default function Restaurant({props, match, ...rest}) {
       </div>
 
       {currentPage === "info" && (
-          <div className={"restaurant__info"}>{currentRestaurant.attributes.description}
-          </div>
+          <div className={"restaurant__info"}>{currentRestaurant.attributes.description}</div>
       )}
       {currentPage === "menu" && (
           <div className={"restaurant__menu"}>

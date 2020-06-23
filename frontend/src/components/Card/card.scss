@@ -9,6 +9,11 @@
         background-color: hotpink;
     }
 
+    &-link {
+        text-decoration: none;
+        color: black;
+    }
+
     &__content {
         position: relative;
         flex-basis: 70%;
