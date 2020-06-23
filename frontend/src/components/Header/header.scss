@@ -1,7 +1,6 @@
 @import '../../app.scss';
 
 .header {
-  max-width: 1024px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -11,7 +10,6 @@
 
 .header__button {
   flex:1;
-  // transform: scale(1.5);
 }
 
 .header__title {

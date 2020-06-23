@@ -1,12 +1,15 @@
+@import '../../app.scss';
+
 .tabmenu {
     display: flex;
 
     &__item {
-        flex-basis: percentage(1/3);
-        border-bottom: solid 1px red;
+        flex: 1;
+        border-bottom: solid 1px $second-color;
     }
     
     .selected {
-        border-bottom: solid 1px #68163B;
+        color: $primary-color;
+        border-bottom: solid 1px $primary-color;
     }
 }
