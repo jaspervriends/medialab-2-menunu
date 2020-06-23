@@ -9,6 +9,11 @@
         background-color: hotpink;
     }
 
+    &-link {
+        text-decoration: none;
+        color: black;
+    }
+
     &__content {
         position: relative;
         flex-basis: 70%;
@@ -29,6 +34,12 @@
         &-item {
             margin-right: 5px;
         }
+    }
+
+    &__priceRange {
+        position: absolute;
+        bottom: -5px;
+        left: 10px;
     }
 
     .fa-map-marker {

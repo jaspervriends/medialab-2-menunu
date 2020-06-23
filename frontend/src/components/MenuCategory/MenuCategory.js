@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./menuCategory.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
 
 function MenuCategory({edit = false, onCreate = () =>{}, menu}) {
   const [opened, setOpened] = useState(false);
@@ -10,8 +11,8 @@ function MenuCategory({edit = false, onCreate = () =>{}, menu}) {
   return (
     <div className={"menu-category"}>
       <div className={"menu-category__header"} onClick={() => setOpened(!opened)}>
-      <h3 className={"menu-category__title"}>{menu.name}</h3>
-        <div className={"menu-category__header-icon"}>
+        <h3 className={"menu-category__title"}>{menu.name}</h3>
+        <div className={clsx("menu-category__header-icon", opened && "opened")}>
           <FontAwesomeIcon icon={["fas", "chevron-up"]} />
         </div>
       </div>

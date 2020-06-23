@@ -7,9 +7,12 @@ use App\Repository\RestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
 /**
  * @ApiResource()
+ * @ApiFilter(OrderFilter::class, properties={"id", "name", "priceRange"}, arguments={"orderParameterName"="order"})
  * @ORM\Entity(repositoryClass=RestaurantRepository::class)
  */
 class Restaurant
@@ -90,6 +93,11 @@ class Restaurant
      * @ORM\ManyToMany(targetEntity=RestaurantTags::class, inversedBy="restaurants")
      */
     private $tags;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $priceRange;
 
     public function __construct()
     {
@@ -300,6 +308,18 @@ class Restaurant
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
         }
+
+        return $this;
+    }
+
+    public function getPriceRange(): ?int
+    {
+        return $this->priceRange;
+    }
+
+    public function setPriceRange(?int $priceRange): self
+    {
+        $this->priceRange = $priceRange;
 
         return $this;
     }
