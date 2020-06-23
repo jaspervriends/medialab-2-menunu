@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import "./restaurant.scss";
+import "./create.scss";
 import Tabmenu from "../../components/Tabmenu/Tabmenu";
 import MenuCategory from "../../components/MenuCategory/MenuCategory";
-import api from "../../utils/api"
 
-export default function Restaurant({props, match, ...rest}) {
+export default function Restaurant() {
   const [currentPage, setCurrentPage] = useState("menu");
   const menuItems = [
     {
@@ -20,26 +19,6 @@ export default function Restaurant({props, match, ...rest}) {
         value: "beheer"
     }
 ];
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [currentRestaurant, setCurrentRestaurant] = useState(null);
-
-  if(!isLoaded) {
-    setIsLoaded(true);
-    setIsLoading(true);
-
-    api(`restaurants/${match.params.id}`)
-      .then(({data}) => {
-        setIsLoading(false);
-        setCurrentRestaurant(data.data)
-
-        console.log(data)
-    })
-  }
-
-  if(isLoading) {
-    return "Laden.."
-  }
 
   return (
     <div className={"container"}>
@@ -49,7 +28,10 @@ export default function Restaurant({props, match, ...rest}) {
       </div>
 
       {currentPage === "info" && (
-          <div className={"restaurant__info"}>{currentRestaurant.attributes.description}</div>
+          <div className={"restaurant__info"}>Het verhaal van Bram Ladage begon in 1967, met een druk bezochte patatkraam op de markt van Rotterdam.
+            Bram: ”Ik ben op de markt opgegroeid. Vier uur of half vijf opstaan en dan keihard aanpoten tussen de klapperende zeilen. Vanaf mijn elfde hielp ik mijn vader met de patat, vanaf mijn zestiende stond ik bij mijn moeder tussen de stoffen. Dat vond ik maar niks. Twee jaar later had ik mijn eigen patatkraam.
+            Inmiddels is Bram Ladage uitgegroeid tot een franchiseformule met 30+ filialen in Rotterdam en omstreken!
+          </div>
       )}
       {currentPage === "menu" && (
           <div className={"restaurant__menu"}>

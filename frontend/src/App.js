@@ -6,6 +6,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav"
 import Restaurant from "./pages/Restaurant/Restaurant";
+import Create from "./pages/Create/Create";
 
 function App() {
   const [showNav, setShowNav] = useState(false);
@@ -18,6 +19,7 @@ function App() {
         } 
       <Switch>
         <Route path={"/home"} component={Home} exact />
+        <Route path={"/create"} component={Create} />
         <Route path={"/restaurant/:id"} component={Restaurant} />
         <Route path={"*"} component={PageNotFound} />
       </Switch>
