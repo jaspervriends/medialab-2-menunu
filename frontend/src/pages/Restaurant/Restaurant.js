@@ -42,14 +42,8 @@ export default function Restaurant({props, match, ...rest}) {
   return (
     <div className={"container"}>
       <div className={"restaurant"}>
-<<<<<<< HEAD
-        <div className={"restaurant__header"}>
-        </div>
-        <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage}/>
-=======
         <div className={"restaurant__header"}></div>
         <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage} menuItems={menuItems}/>
->>>>>>> 9c30254e93c2ed17b6e60ffd7350a8d31f9b4e28
       </div>
 
       {currentPage === "info" && (

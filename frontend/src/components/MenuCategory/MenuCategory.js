@@ -11,9 +11,9 @@ function MenuCategory({edit = false, onCreate = () =>{}, menu}) {
   return (
     <div className={"menu-category"}>
       <div className={"menu-category__header"} onClick={() => setOpened(!opened)}>
-        <h3 className={"menu-category__title"}>{menu.name}</h3>
+        <h3 className={"menu-category__title"} aria-label="Open Menu categorie">Restaurant titel</h3>
         <div className={clsx("menu-category__header-icon", opened && "opened")}>
-          <FontAwesomeIcon icon={["fas", "chevron-up"]} />
+          <FontAwesomeIcon icon={["fas", "chevron-up"]} aria-label="Open Menu categorie"/>
         </div>
       </div>
     

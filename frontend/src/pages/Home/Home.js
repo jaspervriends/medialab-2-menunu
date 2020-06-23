@@ -18,14 +18,13 @@ export default function Home() {
     .then(({data}) => {
       setIsLoading(false);
       setRestaurants(data.data)
-      console.log(data)
     })
   }
   
   return (
     <div className={"container"}>
       <div className={"filter"}>
-        <span className={"filter__title"}>Filter op</span>
+        <h2 className={"filter__title"}>Filter op</h2>
         <div className={"filter__items"}>
           {/* <Button label="afstand" />
           <Button label="favoriete" /> */}
