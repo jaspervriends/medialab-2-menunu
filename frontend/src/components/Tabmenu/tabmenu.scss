@@ -3,7 +3,8 @@
 
     &__item {
         flex-basis: percentage(1/3);
-        border-bottom: solid 1px red;
+        border-bottom: solid 1px gainsboro;
+        cursor: pointer;
     }
     
     .selected {
