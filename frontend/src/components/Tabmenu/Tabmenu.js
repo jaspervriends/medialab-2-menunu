@@ -30,7 +30,7 @@ function Tabmenu({onChange, value}) {
     return (
         <div className={"tabmenu"}>
             {menuItems.map((item, key) => {
-                return <div key={key} aria-label={item.ariaLabel} className={clsx("tabmenu__item", currentSelected === item.value && "selected")} onClick={() => {onChange(item.value)}}>{item.title}</div>
+                return <div key={key} aria-label={item.ariaLabel}  className={clsx("tabmenu__item", currentSelected === item.value && "selected", item.disabled && "disabled")} onClick={() => {onChange(item.value)}}>{item.title}</div>
             })}
         </div>
     );

@@ -13,4 +13,7 @@
         color: $primary-color;
         border-bottom: solid 1px $primary-color;
     }
+    .disabled {
+        pointer-events: none;
+    }
 }
