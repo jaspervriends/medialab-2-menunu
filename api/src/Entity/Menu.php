@@ -60,6 +60,8 @@ class Menu
     public function __construct()
     {
         $this->menuCategories = new ArrayCollection();
+        $this->created_at = new \DateTime();
+        $this->enabled = true;
     }
 
     public function getId(): ?int
