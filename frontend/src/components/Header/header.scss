@@ -1,7 +1,6 @@
 @import '../../app.scss';
 
 .header {
-  width: 100%;
   display: flex;
   justify-content: center;
   box-shadow: $boxShadow;
@@ -16,5 +15,5 @@
   font-size: 30px;
   font-family: $secondFont;
   color:$primary-color;
-  flex: 2;
+  width: calc(50% + 67px);
 }
