@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./nav.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {matchPath ,useHistory } from "react-router-dom";
+import clsx from "clsx";
 
 export default function Nav({onChange, opened}) {
+  const history = useHistory();
+  const path = history.location.pathname
 
   const navItems = [
     {
@@ -15,7 +19,7 @@ export default function Nav({onChange, opened}) {
       title: 'Nieuw restaurant aanmaken',
       value: 'create',
       icon: 'utensils',
-      link: '/'
+      link: '/create'
     }
   ]
     return (
@@ -30,7 +34,7 @@ export default function Nav({onChange, opened}) {
           </div>
           <ul className={'nav__items'}>
             {navItems.map((item, key) => {
-              return <li key={key} className={'nav__item'}>
+              return <li key={key} className={clsx("nav__item", path === item.link && "nav__item--active")}>
                 <a href={item.link}>
                   <FontAwesomeIcon icon={["fas", item.icon]} />
                   <div>{item.title}</div>
