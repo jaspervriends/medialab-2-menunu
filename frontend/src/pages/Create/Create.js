@@ -3,10 +3,11 @@ import "./create.scss";
 import "../Restaurant/restaurant.scss"
 import Tabmenu from "../../components/Tabmenu/Tabmenu";
 import MenuCategory from "../../components/MenuCategory/MenuCategory";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
 import api from "../../utils/api";
+import { useHistory } from "react-router-dom";
 
 export default function Create() {
+  let history = useHistory();
   const [currentPage, setCurrentPage] = useState("info");
   const [createForm, setCreateForm] = useState({
     name: '',
@@ -23,69 +24,18 @@ export default function Create() {
     // tags: []
 
   });
-  const [menuItems, setMenuItems] = useState([
-    {
-        title: "Info",
-        value: "info",
-        ariaLabel: "Restaurant Informatie",
-    },
-    {
-        title: "Menu",
-        value: "menu",
-        ariaLabel: "Menu aanmaken",
-        disabled: true
-    },
-]);
-
-const [menus, setMenus] = useState([
-  { 
-    name: 'patat',
-    id: 1,
-    items: [
-      {
-        name: 'paataat',
-        price: 1.40
-      }
-    ]
-  },
-  { 
-    name: 'patat2',
-    id: 2,
-    items: [
-      {
-        name: 'paataat2',
-        price: 1.40
-      }
-    ]
-  },
-])
-
-function menuUpdate(val, menu) {
-  const menuIndex = menus.findIndex((e) => { return e.id === menu.id})
-  setMenus(menus[menuIndex].items.push(val))
-}
 
 async function create (){
   await api(`restaurants`, {data: {attributes:createForm,}} )
-  .then(({data}) => {    
-    setMenuItems(
-      [
-        menuItems[0],
-        {
-          ...menuItems[1], 
-        disabled : false
-        }
-      ]
-    )
+  .then(({data}) => { 
+   history.push(`/restaurant/${data.data.attributes._id}`);
   })
 }
   return (
     <div className={"container"}>
       <div className={"create"}>
         <div className={"create__header"}>
-        <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage} menuItems={menuItems}/>
         </div>
-      {currentPage === "info" && (
         <div className={"create__info"}>
           <div className={'create__field'}>
             <label className={'create__label'}> Restaurant Naam </label>
@@ -100,14 +50,6 @@ async function create (){
             Inmiddels is Bram Ladage uitgegroeid tot een franchiseformule met 30+ filialen in Rotterdam en omstreken!'>
           </textarea>
         </div>
-      )}
-      {currentPage === "menu" && (
-          <div className={"create__menu"}>
-            {menus.map((menu, key) => {
-              return <MenuCategory menu={menu} edit={true} key={key} onCreate={(e)=> {menuUpdate(e, menu)}} />   
-            })}
-          </div>
-      )}
         <div className="create__footer button" onClick={create}>
           sla op
         </div>

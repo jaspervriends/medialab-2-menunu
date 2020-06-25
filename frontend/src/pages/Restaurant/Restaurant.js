@@ -4,6 +4,7 @@ import Tabmenu from "../../components/Tabmenu/Tabmenu";
 import MenuCategory from "../../components/MenuCategory/MenuCategory";
 import api from "../../utils/api"
 import RestaurantMenu from "../../components/RestaurantMenu/RestaurantMenu";
+import MenuCreate from "../../components/MenuCreate/MenuCreate";
 
 export default function Restaurant({props, match, ...rest}) {
   const [currentPage, setCurrentPage] = useState("menu");
@@ -20,7 +21,7 @@ export default function Restaurant({props, match, ...rest}) {
     },
     {
         title: "Menu aanpassen",
-        value: "Menu aanpassen",
+        value: "edit",
         ariaLabel: "Menu aanpassen",
     }
   ];
@@ -36,8 +37,14 @@ export default function Restaurant({props, match, ...rest}) {
     api(`restaurants/${match.params.id}`)
       .then(({data}) => {
         setCurrentRestaurant(data.data)
-
         setIsLoading(false);
+    })
+  }
+
+  async function save(e) {
+    await api(`menu_categories`, {data:  {attributes: {name: e},}} )
+    .then(({data}) => { 
+     console.log(data)
     })
   }
 
@@ -70,8 +77,20 @@ export default function Restaurant({props, match, ...rest}) {
           })}
         </div>
       )}
-      {currentPage === "beheer" && (
-          <div>beheer</div>
+      {currentPage === "edit" && (
+        <div className={"restaurant__menu"}>
+          {currentRestaurant.relationships && !currentRestaurant.relationships.menus && (
+          <p>Dit restaurant heeft nog geen menu.</p>
+        )}
+        
+        {/* Loop through the menus */}
+        {currentRestaurant.relationships && currentRestaurant.relationships.menus.data.map((item, key) => {
+          return (
+            <RestaurantMenu key={key} id={item.id} edit="true" />
+          );
+        })}
+          <MenuCreate onChange={save} />
+        </div> 
       )}
     </div>
   );

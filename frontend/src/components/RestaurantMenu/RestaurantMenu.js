@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MenuCategory from '../MenuCategory/MenuCategory';
 import api from '../../utils/api';
 
-export default function RestaurantMenu({ id }) {
+export default function RestaurantMenu({ id, edit = false }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [menu, setMenu] = useState(null);
@@ -61,7 +61,7 @@ export default function RestaurantMenu({ id }) {
       {menuCategories.map((item, key) => {
 
         return (
-          <MenuCategory key={key} menu={item.attributes} id={item.attributes._id} />
+          <MenuCategory key={key} menu={item.attributes} id={item.attributes._id} edit={edit} />
         );
       })}
     </div>

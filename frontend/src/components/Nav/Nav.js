@@ -37,7 +37,7 @@ export default function Nav({onChange, opened}) {
           <ul className={'nav__items'}>
             {navItems.map((item, key) => {
               return <li key={key} className={clsx("nav__item", path === item.link && "nav__item--active")}>
-              <Link to={item.link} onClick={() => onChange(!opened)}>
+                <Link to={item.link} onClick={() => onChange(!opened)}>
                   <FontAwesomeIcon icon={["fas", item.icon]} aria-label={item.ariaLabel} role="button" />
                   <div>{item.title}</div>
                 </Link>
