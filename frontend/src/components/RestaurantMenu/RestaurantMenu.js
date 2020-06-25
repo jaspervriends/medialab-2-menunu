@@ -61,7 +61,25 @@ export default function RestaurantMenu({ id, edit = false }) {
     }
       )
     .then(({data}) => { 
-     console.log(data)
+      api(`${id.substr(1)}?include=menuCategories`)
+      .then(({data}) => {
+        // Set menu
+        setMenu(data.data);
+
+        const menuCategories = [];
+
+        // Set menu categories
+        if (data.included) {
+          data.included.forEach(item => {
+            if(item.type === "MenuCategory") {
+              menuCategories.push(item);
+            }
+          });
+        }
+
+        // Set menu categories
+        setMenuCategories(menuCategories)
+    })
     })
   }
 

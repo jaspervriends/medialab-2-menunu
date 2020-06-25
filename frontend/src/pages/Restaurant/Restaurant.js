@@ -60,7 +60,11 @@ export default function Restaurant({props, match, ...rest}) {
     }
       )
     .then(({data}) => { 
-     console.log(data)
+      console.log(data.data, 'data')
+      api(`restaurants/${match.params.id}`)
+      .then(({data}) => {
+        setCurrentRestaurant(data.data)
+    })
     })
   }
 

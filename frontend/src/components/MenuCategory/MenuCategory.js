@@ -56,9 +56,15 @@ function MenuCategory({ edit = false, onCreate = () => {}, menu = {}, id}) {
         },
       }
     }
-      )
+    )
     .then(({data}) => { 
-     console.log(data)
+      api(`menu_categories/${id}/menu_items`)
+      .then(({data}) => {
+        setCategoryItems(data.data)
+        setCreateTitle('');
+        setPriceTitle('');
+        
+      })
     })
   }
 
