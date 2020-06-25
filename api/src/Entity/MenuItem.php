@@ -31,7 +31,7 @@ class MenuItem
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -54,6 +54,12 @@ class MenuItem
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+        $this->enabled = true;
+    }
 
     public function getId(): ?int
     {
