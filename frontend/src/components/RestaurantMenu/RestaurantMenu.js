@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MenuCategory from '../MenuCategory/MenuCategory';
+import MenuCategoryCreate from '../MenuCategoryCreate/MenuCategoryCreate'
 import api from '../../utils/api';
 
 export default function RestaurantMenu({ id, edit = false }) {
@@ -41,6 +42,29 @@ export default function RestaurantMenu({ id, edit = false }) {
     })
   }
 
+  async function createMenuCategory(e) {
+    await api(`menu_categories`, 
+    {
+      data: {
+        attributes: {
+        name: e
+        },
+        relationships: {
+          menu: {
+            data :{
+              id: menu.id,
+              type: 'Menu'
+            }
+          }
+        },
+      }
+    }
+      )
+    .then(({data}) => { 
+     console.log(data)
+    })
+  }
+
   // Wait for the menu
   if(!isLoaded) {
     return (
@@ -54,6 +78,9 @@ export default function RestaurantMenu({ id, edit = false }) {
       <div>
         <h2>{menu.attributes.name}</h2>
         <p>Er zijn geen categoriën toegevoegd in dit menu.</p>
+        {edit && (
+          <MenuCategoryCreate onChange={createMenuCategory} />
+        )}
       </div>
     )
   }
@@ -62,12 +89,15 @@ export default function RestaurantMenu({ id, edit = false }) {
   return (
     <div>
       <h2>{menu.attributes.name}</h2>
-
       {menuCategories.map((item, key) => {
-
         return (
-          <MenuCategory key={key} menu={item.attributes} id={item.attributes._id} edit={edit} />
-        );
+          <div>
+            <MenuCategory key={key} menu={item.attributes} id={item.attributes._id} edit={edit} />
+            {edit && (
+              <MenuCategoryCreate onChange={createMenuCategory} />
+            )}
+          </div>
+          );
       })}
     </div>
   )
