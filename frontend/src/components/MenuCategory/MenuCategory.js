@@ -38,11 +38,40 @@ function MenuCategory({ edit = false, onCreate = () => {}, menu = {}, id}) {
         setIsLoading(false);
     })
   }
+  async function createMenuItem(e) {
+    await api(`menu_items`, 
+    {
+      data: {
+        attributes: {
+        name: e.name,
+        price: parseFloat(e.price),
+        },
+        relationships: {
+          menuCategory: {
+            data :{
+              id: `/menu_categories/${menu._id}`,
+              type: 'MenuCategory'
+            }
+          }
+        },
+      }
+    }
+    )
+    .then(({data}) => { 
+      api(`menu_categories/${id}/menu_items`)
+      .then(({data}) => {
+        setCategoryItems(data.data)
+        setCreateTitle('');
+        setPriceTitle('');
+        
+      })
+    })
+  }
 
   return (
     <div className={"menu-category"}>
       <div className={"menu-category__header"} onClick={() => setOpened(!opened)}>
-        <h3 className={"menu-category__title"} aria-label="Open Menu categorie">Restaurant titel</h3>
+        <h3 className={"menu-category__title"} aria-label="Open Menu categorie">{menu.name && (menu.name)}</h3>
         <div className={clsx("menu-category__header-icon", opened && "opened")}>
           <FontAwesomeIcon icon={["fas", "chevron-up"]} aria-label="Open Menu categorie"/>
         </div>
@@ -70,7 +99,7 @@ function MenuCategory({ edit = false, onCreate = () => {}, menu = {}, id}) {
           <div className={"menu-category-item"}>
             <input className={"menu-category-item__title"} value={createTitle} onChange={e => { setCreateTitle(e.target.value)}} />
             <input type="number" className={"menu-category-item__prices"} value={createPrice} onChange={e => { setPriceTitle(e.target.value)}} />
-            <button onClick={() => {onCreate({name: createTitle, price: createPrice})}}><FontAwesomeIcon icon={["fas", "check"]} /></button>
+            <button onClick={() => {createMenuItem({name: createTitle, price: createPrice})}}><FontAwesomeIcon icon={["fas", "check"]} /></button>
           </div>
           )}
         </div>

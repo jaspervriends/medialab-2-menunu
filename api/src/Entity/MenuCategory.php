@@ -62,6 +62,8 @@ class MenuCategory
     public function __construct()
     {
         $this->menuItems = new ArrayCollection();
+        $this->created_at = new \DateTime();
+        $this->enabled = true;
     }
 
     public function getId(): ?int
