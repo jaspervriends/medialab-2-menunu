@@ -1,10 +1,7 @@
 @import '../../app.scss';
 
 .create__footer {
-    width: 330px;
     margin-top: 20px;
-    position: fixed;
-    bottom: 30px;
 }
 
 .create__header {
@@ -24,15 +21,27 @@
     align-items: center;
     flex-wrap: wrap;
     width: 400px;
-    padding: 40px 60px 60px;
+    padding: 40px 60px 0;
     justify-content: space-between;
+
+    &-title {
+        font-size: 30px;
+        color: $primary-color;
+        margin-top: 0;
+    }
 }
 
 .create__field {
-    width: calc(50% - 4px);
-    margin-bottom: 10px;
+    width: 100%;
+    margin: 7px 0;
+
     input {
         width: -webkit-fill-available;
+        height: 40px;
+        padding: 0 15px;
+        border-radius: 15px;
+        border: 1px solid $second-color;
+        margin-top: 5px;
     }
 }
 
@@ -43,4 +52,9 @@
 textarea {
     width: 500px;
     height: 300px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid $second-color;
+    margin-bottom: 15px;
+    margin-top: 5px;
 }

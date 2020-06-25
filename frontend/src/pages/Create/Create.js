@@ -13,6 +13,7 @@ export default function Create() {
     name: '',
     description: '',
     phone: 0,
+    priceRange: 0,
     // email: '',
     // street: '',
     // zip: '',
@@ -20,9 +21,8 @@ export default function Create() {
     // countryCode: '',
     // leveled: false,
     // dogFriendly: false,
-    // logo: '',
+    logo: '',
     // tags: []
-
   });
 
 async function create (){
@@ -37,22 +37,30 @@ async function create (){
         <div className={"create__header"}>
         </div>
         <div className={"create__info"}>
+          <h2 className={"create__info-title"}>Restaurant aanmaken:</h2>
           <div className={'create__field'}>
-            <label className={'create__label'}> Restaurant Naam </label>
+            <label className={'create__label'}>Naam</label>
             <input className={'create__title'} value={createForm.name} onChange={e => { setCreateForm({...createForm, name : e.target.value})}} />
           </div>
           <div className={'create__field'}>
-            <label className={'create__label'}> Telefoon nummer </label>
+            <label className={'create__label'}>Telefoonnummer</label>
             <input className={'create__title'} value={createForm.phone} onChange={e => { setCreateForm({...createForm, phone : parseInt(e.target.value)})}} />
           </div>
+          <label className={'create__label'}>Omschrijving</label>
           <textarea value={createForm.description} onChange={e => { setCreateForm({...createForm,description : e.target.value})}} placeholder='Het verhaal van Bram Ladage begon in 1967, met een druk bezochte patatkraam op de markt van Rotterdam.
             Bram: ”Ik ben op de markt opgegroeid. Vier uur of half vijf opstaan en dan keihard aanpoten tussen de klapperende zeilen. Vanaf mijn elfde hielp ik mijn vader met de patat, vanaf mijn zestiende stond ik bij mijn moeder tussen de stoffen. Dat vond ik maar niks. Twee jaar later had ik mijn eigen patatkraam.
             Inmiddels is Bram Ladage uitgegroeid tot een franchiseformule met 30+ filialen in Rotterdam en omstreken!'>
           </textarea>
+          <div className={'create__field'}>
+            <label className={'create__label'}>Prijsklasse (1-3)</label>
+            <input className={'create__title'} type="text" pattern="[0-9]*" value={createForm.priceRange} onChange={e => { setCreateForm({...createForm, priceRange : parseInt(e.target.value)})}} />
+          </div>
+          <div className={'create__field'}>
+            <label className={'create__label'}>Afbeeldinglink</label>
+            <input className={'create__title'} value={createForm.logo} onChange={e => { setCreateForm({...createForm, logo : e.target.value})}}/>
+          </div>
         </div>
-        <div className="create__footer button" onClick={create}>
-          sla op
-        </div>
+        <div className="create__footer button" onClick={create}>Opslaan</div>
       </div>
     </div>
   );
