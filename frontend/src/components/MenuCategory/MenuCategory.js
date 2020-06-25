@@ -5,6 +5,7 @@ import clsx from "clsx";
 import MenuCategoryItem from "./MenuCategoryItem/MenuCategoryItem";
 import MenuCreate from './../MenuCreate/MenuCreate'
 import api from "../../utils/api";
+import Loading from "../Loading/Loading";
 
 function MenuCategory({ edit = false, onCreate = () => {}, menu = {}, id}) {
   const [opened, setOpened] = useState(false);
@@ -80,7 +81,7 @@ function MenuCategory({ edit = false, onCreate = () => {}, menu = {}, id}) {
       {/* Opened, but nog ready */}
       {opened && (!isLoaded || isLoading) && (
         <div className={"menu-category-items"}>
-          Menu items ophalen...
+          <Loading small />
         </div>
       )}
     
@@ -88,7 +89,7 @@ function MenuCategory({ edit = false, onCreate = () => {}, menu = {}, id}) {
       {opened && !isLoading && isLoaded && (
         <div className={"menu-category-items"}>
           {(!categoryItems || categoryItems.length === 0) && (
-            <p>Deze menukaart is nog niet gevuld.</p>
+            <p>Deze categorie is nog niet gevuld.</p>
           )}
 
           {categoryItems && categoryItems.map((item, key) => {
@@ -96,10 +97,14 @@ function MenuCategory({ edit = false, onCreate = () => {}, menu = {}, id}) {
           })}
 
           {edit && (
-          <div className={"menu-category-item"}>
-            <input className={"menu-category-item__title"} value={createTitle} onChange={e => { setCreateTitle(e.target.value)}} />
-            <input type="number" className={"menu-category-item__prices"} value={createPrice} onChange={e => { setPriceTitle(e.target.value)}} />
-            <button onClick={() => {createMenuItem({name: createTitle, price: createPrice})}}><FontAwesomeIcon icon={["fas", "check"]} /></button>
+          <div className={"menu-category-add"}>
+            <h3>Item toevoegen</h3>
+
+            <div className={"menu-category-add__input"}>
+              <input className={"menu-category-add__input__title"} value={createTitle} onChange={e => { setCreateTitle(e.target.value)}} />
+              <input type="number" className={"menu-category-add__input__price"} value={createPrice} onChange={e => { setPriceTitle(e.target.value)}} />
+              <button onClick={() => {createMenuItem({name: createTitle, price: createPrice})}}><FontAwesomeIcon icon={["fas", "paper-plane"]} /></button>
+            </div>
           </div>
           )}
         </div>

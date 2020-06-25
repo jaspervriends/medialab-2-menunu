@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MenuCategory from '../MenuCategory/MenuCategory';
 import MenuCategoryCreate from '../MenuCategoryCreate/MenuCategoryCreate'
 import api from '../../utils/api';
+import Loading from '../Loading/Loading';
 
 export default function RestaurantMenu({ id, edit = false }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -86,14 +87,14 @@ export default function RestaurantMenu({ id, edit = false }) {
   // Wait for the menu
   if(!isLoaded) {
     return (
-      <p>Menu laden...</p>
+      <Loading text={"Menu laden..."} />
     )
   }
 
   // There were no menu categories
   if(!menuCategories || menuCategories.length === 0) {
     return (
-      <div>
+      <div className={"restaurant__menu"}>
         <h2>{menu.attributes.name}</h2>
         <p>Er zijn geen categoriën toegevoegd in dit menu.</p>
         {edit && (
@@ -105,18 +106,19 @@ export default function RestaurantMenu({ id, edit = false }) {
 
   // Loop through the categories
   return (
-    <div>
+    <div className={"restaurant__menu"}>
       <h2>{menu.attributes.name}</h2>
       {menuCategories.map((item, key) => {
         return (
           <div>
             <MenuCategory key={key} menu={item.attributes} id={item.attributes._id} edit={edit} />
-            {edit && (
-              <MenuCategoryCreate onChange={createMenuCategory} />
-            )}
           </div>
           );
       })}
+      
+      {edit && (
+        <MenuCategoryCreate onChange={createMenuCategory} />
+      )}
     </div>
   )
 }
