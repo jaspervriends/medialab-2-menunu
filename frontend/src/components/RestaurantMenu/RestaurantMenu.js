@@ -26,11 +26,13 @@ export default function RestaurantMenu({ id, edit = false }) {
         const menuCategories = [];
 
         // Set menu categories
-        data.included.forEach(item => {
-          if(item.type === "MenuCategory") {
-            menuCategories.push(item);
-          }
-        });
+        if (data.included) {
+          data.included.forEach(item => {
+            if(item.type === "MenuCategory") {
+              menuCategories.push(item);
+            }
+          });
+        }
 
         // Set menu categories
         setMenuCategories(menuCategories)
@@ -49,7 +51,10 @@ export default function RestaurantMenu({ id, edit = false }) {
   // There were no menu categories
   if(!menuCategories || menuCategories.length === 0) {
     return (
-      <p>Er zijn geen categoriën toegevoegd in dit menu.</p>
+      <div>
+        <h2>{menu.attributes.name}</h2>
+        <p>Er zijn geen categoriën toegevoegd in dit menu.</p>
+      </div>
     )
   }
 

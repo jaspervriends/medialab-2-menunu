@@ -42,7 +42,23 @@ export default function Restaurant({props, match, ...rest}) {
   }
 
   async function save(e) {
-    await api(`menu_categories`, {data:  {attributes: {name: e},}} )
+    await api(`menus`, 
+    {
+      data: {
+        attributes: {
+        name: e
+        },
+        relationships: {
+          restaurant: {
+            data :{
+              id: `/restaurants/${match.params.id}`,
+              type: 'Restaurant'
+            }
+          }
+        },
+      }
+    }
+      )
     .then(({data}) => { 
      console.log(data)
     })
