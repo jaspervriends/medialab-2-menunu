@@ -46,7 +46,16 @@ export default function Home() {
         <div>Laden...</div>
       )}
       {restaurants.map((item, key) => {
-        return <Card key={key} id={item.attributes._id} title={item.attributes.name} description={item.attributes.description} priceRange={item.attributes.priceRange}/>
+        return <Card 
+          key={key}
+          id={item.attributes._id} 
+          title={item.attributes.name} 
+          description={item.attributes.description} 
+          priceRange={item.attributes.priceRange} 
+          logo={item.attributes.logo} 
+          dogFriendly={item.attributes.dogFriendly}
+          leveled={item.attributes.leveled} 
+          />
       })}
       </div>
     </div>
