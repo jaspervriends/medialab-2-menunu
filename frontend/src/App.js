@@ -13,10 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header onChange={(value) => setShowNav(value)} opened={showNav} />
-      {showNav && (
-            <Nav onChange={(value) => setShowNav(value)} opened={showNav}/>
-          )
-        } 
+      <Nav onChange={(value) => setShowNav(value)} opened={showNav}/>
       <Switch>
         <Route path={"/home"} component={Home} exact />
         <Route path={"/create"} component={Create} />

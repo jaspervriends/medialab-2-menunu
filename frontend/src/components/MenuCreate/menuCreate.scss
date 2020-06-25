@@ -1,4 +1,45 @@
-.menu-category__create {
-    margin-left: 20px;
-    border: none;
+.menu_create {
+    margin-top: 40px;
+
+    h3 {
+        margin-bottom: 5px;
+        text-align: center;
+        font-weight: 400;
+        font-size: 15px;
+        color: #8a8a8a;
+        text-transform: uppercase;
+    }
+
+    &__input {
+        padding: 10px 0;
+        display: flex;
+
+        h3 {
+            width: 100%;
+            margin: 0;
+        }
+
+        input {
+            padding: 10px 15px;
+            flex-grow: 1;
+            outline: 0;
+            background: 10px;
+            margin-right: 15px;
+            background: #FFFFFF;
+            border: 1px solid #eeeeee;
+        }
+
+        button {
+            background: #68163b;
+            color: #FFFFFF;
+            border: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            padding: 0;
+            text-align: center;
+            line-height: 25px;
+            margin-top: 5px
+        }
+    }
 }

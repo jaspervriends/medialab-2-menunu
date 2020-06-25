@@ -3,6 +3,7 @@ import "./home.scss";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import api from "../../utils/api"
+import Loading from "../../components/Loading/Loading";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,7 +44,7 @@ export default function Home() {
       </div>
       <div className={"overview"}>
       {isLoading && (
-        <div>Laden...</div>
+        <Loading />
       )}
       {restaurants.map((item, key) => {
         return <Card 

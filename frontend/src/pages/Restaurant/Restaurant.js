@@ -5,6 +5,7 @@ import MenuCategory from "../../components/MenuCategory/MenuCategory";
 import api from "../../utils/api"
 import RestaurantMenu from "../../components/RestaurantMenu/RestaurantMenu";
 import MenuCreate from "../../components/MenuCreate/MenuCreate";
+import Loading from "../../components/Loading/Loading";
 
 export default function Restaurant({props, match, ...rest}) {
   const [currentPage, setCurrentPage] = useState("menu");
@@ -20,7 +21,7 @@ export default function Restaurant({props, match, ...rest}) {
         ariaLabel: "Menu inzien"
     },
     {
-        title: "Menu aanpassen",
+        title: "Bewerken",
         value: "edit",
         ariaLabel: "Menu aanpassen",
     }
@@ -69,49 +70,60 @@ export default function Restaurant({props, match, ...rest}) {
   }
 
   if(isLoading) {
-    return "Laden.."
+    return <Loading text={"Restaurant laden..."} />
   }
 
   return (
-    <div className={"container"}>
+    <>
       <div className={"restaurant"}>
-        <div className={"restaurant__header"}></div>
-        <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage} menuItems={menuItems}/>
+        <div className={"restaurant__header"}>
+          <img src={currentRestaurant.attributes.logo} className={"restaurant__image"} />
+          <h2>{currentRestaurant.attributes.name}</h2>
+          <Tabmenu onChange={(value) => setCurrentPage(value)} value={currentPage} menuItems={menuItems}/>
+        </div>
       </div>
 
-      {currentPage === "info" && (
-        <div className={"restaurant__info"}>{currentRestaurant.attributes.description}</div>
-      )}
+      <div className={"container"}>
 
-      {currentPage === "menu" && (
-        <div className={"restaurant__menu"}>
-          {currentRestaurant.relationships && !currentRestaurant.relationships.menus && (
-            <p>Dit restaurant heeft nog geen menu.</p>
-          )}
-          
-          {/* Loop through the menus */}
-          {currentRestaurant.relationships && currentRestaurant.relationships.menus.data.map((item, key) => {
-            return (
-              <RestaurantMenu key={key} id={item.id} />
-            );
-          })}
-        </div>
-      )}
-      {currentPage === "edit" && (
-        <div className={"restaurant__menu"}>
-          {currentRestaurant.relationships && !currentRestaurant.relationships.menus && (
-          <p>Dit restaurant heeft nog geen menu.</p>
+        {currentPage === "info" && (
+          <div className={"restaurant__info"}>{currentRestaurant.attributes.description}</div>
         )}
-        
-        {/* Loop through the menus */}
-        {currentRestaurant.relationships && currentRestaurant.relationships.menus.data.map((item, key) => {
-          return (
-            <RestaurantMenu key={key} id={item.id} edit="true" />
-          );
-        })}
-          <MenuCreate onChange={save} />
-        </div> 
-      )}
-    </div>
+
+        {currentPage === "menu" && (
+          <>
+            {currentRestaurant.relationships && !currentRestaurant.relationships.menus && (
+              <div className={"restaurant__menu"}>
+                <p>Dit restaurant heeft nog geen menu.</p>
+              </div>
+            )}
+            
+            {/* Loop through the menus */}
+            {currentRestaurant.relationships && currentRestaurant.relationships.menus.data.map((item, key) => {
+              return (
+                <RestaurantMenu key={key} id={item.id} />
+              );
+            })}
+          </>
+        )}
+        {currentPage === "edit" && (
+          <>
+            {currentRestaurant.relationships && !currentRestaurant.relationships.menus && (
+              <div className={"restaurant__menu"}>
+                <p>Dit restaurant heeft nog geen menu.</p>
+              </div>
+            )}
+            
+            {/* Loop through the menus */}
+            {currentRestaurant.relationships && currentRestaurant.relationships.menus.data.map((item, key) => {
+              return (
+                <RestaurantMenu key={key} id={item.id} edit="true" />
+              );
+            })}
+            
+            <MenuCreate onChange={save} />
+          </>
+        )}
+      </div>
+    </>
   );
 }

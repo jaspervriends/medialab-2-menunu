@@ -8,11 +8,19 @@
         flex: 1;
         border-bottom: solid 1px $second-color;
         cursor: pointer;
+        padding: 13px 15px;
+        text-align: center;
+
+        @media screen and (max-width: 500px) {
+            padding: 13px 5px;
+            font-size: 15px;
+        }
     }
     
     .selected {
         color: $primary-color;
-        border-bottom: solid 1px $primary-color;
+        border-bottom: solid 2px $primary-color;
+        font-weight: bold;
     }
     .disabled {
         pointer-events: none;
